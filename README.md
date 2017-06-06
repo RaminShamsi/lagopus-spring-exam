@@ -105,16 +105,19 @@ Your task is to create a RESTful quiz application with full of greenfox question
 ### In what cases would you choose to use an abstract class over an interface?
 
 Please define it with your own words. We are expecting at least 3 distinct ideas that you write here:
-
+Abstract are like normal classes which may have abstract methods can be overwitten but Interfaces can not have fields
+and all the methods are for share and can be over written.
+any class can have one parent even in case of Abstract class but it can have (impelement) many interfaces.
+Abstract classes can have fields that are not static and final but they are static and final in interfaces.
 
 ### Analyzing URL
 Please name the parts of the URL below.
 [<img src="assets/URLanalysis.png" alt="parts of URL" />](assets/URLanalysis.png?raw=true)
 
-1:  
-2:  
-3:  
-4:  
-5:  
-6:  
-7:  
+1: protocol
+2: subdomain 
+3: domian name
+4: port
+5: path
+6: query
+7: parameters
