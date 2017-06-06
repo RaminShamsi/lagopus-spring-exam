@@ -86,7 +86,7 @@ public class MainRestController {
 
 
   @PostMapping("/answers")
-  public ProjectList getAnswers() {
+  public ProjectList getAnswers(@RequestBody AnswerList answerList) {
     answerList.answers.add(a1);
     answerList.answers.add(a2);
     answerList.answers.add(a3);
