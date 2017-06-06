@@ -1,14 +1,22 @@
 package com.greenfox.exam.spring.controllers;
 
 
+import com.greenfox.exam.spring.models.Answer;
+import com.greenfox.exam.spring.models.AnswerList;
+import com.greenfox.exam.spring.models.ProjectList;
 import com.greenfox.exam.spring.models.Question;
 import com.greenfox.exam.spring.models.QuestionList;
+import com.greenfox.exam.spring.models.Respond;
+import com.greenfox.exam.spring.repository.AnswerListRepo;
 import com.greenfox.exam.spring.repository.QuestionListRepo;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class MainRestController {
@@ -50,5 +58,24 @@ public class MainRestController {
     return questionList;
   }
 
+  @Autowired
+  Answer answer;
 
+  @Autowired
+  AnswerList answerList;
+
+  @Autowired
+  ProjectList projectList;
+
+  @Autowired
+  AnswerListRepo answerListRepo;
+
+  RestTemplate restTemplate = new RestTemplate();
+
+  @PostMapping("/answers")
+  public ProjectList getAnswers(@RequestBody AnswerList answerList) {
+    restTemplate.postForObject("https://springexamserver.herokuapp.com/projects/eagles", answerList, Respond.class);
+
+    return projectList;
+  }
 }
