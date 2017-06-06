@@ -21,6 +21,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class MainRestController {
 
+  int[] index = new int[3];
+
   @Autowired
   Question question;
 
@@ -54,6 +56,7 @@ public class MainRestController {
     for (int i = 0; i < 3; i++) {
       int id = (int) (Math.random() * 7) + 1;
       questionList.questions.remove(questionList.questions.get(id));
+      index[i] = id;
     }
     return questionList;
   }
@@ -72,8 +75,33 @@ public class MainRestController {
 
   RestTemplate restTemplate = new RestTemplate();
 
+  Answer a1 = new Answer("2017.03.13");
+  Answer a2 = new Answer("Whippet");
+  Answer a3 = new Answer("Green");
+  Answer a4 = new Answer("4");
+  Answer a5 = new Answer("16");
+  Answer a6 = new Answer("Vulpes");
+  Answer a7 = new Answer("~3300");
+  Answer a8 = new Answer("(Libra");
+
+
   @PostMapping("/answers")
-  public ProjectList getAnswers(@RequestBody AnswerList answerList) {
+  public ProjectList getAnswers() {
+    answerList.answers.add(a1);
+    answerList.answers.add(a2);
+    answerList.answers.add(a3);
+    answerList.answers.add(a4);
+    answerList.answers.add(a5);
+    answerList.answers.add(a6);
+    answerList.answers.add(a7);
+    answerList.answers.add(a8);
+
+    answerListRepo.save(answerList);
+
+    for (int i = 0; i < 3; i++) {
+      answerList.answers.remove(index[i]);
+    }
+
     restTemplate.postForObject("https://springexamserver.herokuapp.com/projects/eagles", answerList, Respond.class);
 
     return projectList;

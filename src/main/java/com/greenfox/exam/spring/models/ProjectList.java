@@ -2,8 +2,9 @@ package com.greenfox.exam.spring.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class ProjectList {
 
   public List<Project> projects = new ArrayList<>();
