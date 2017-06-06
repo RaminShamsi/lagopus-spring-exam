@@ -5,21 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
 @Entity
+@Component
 public class Question {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
 
   String question;
 
   public Question() {
-    
+
   }
 
   public Question(String question) {
+    this.question = question;
+  }
+
+  public Question(long id, String question) {
+    this.id = id;
     this.question = question;
   }
 
