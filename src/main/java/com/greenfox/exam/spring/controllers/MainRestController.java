@@ -33,7 +33,7 @@ public class MainRestController {
 
 
   @GetMapping("/questions")
-  public ArrayList getQuestions() {
+  public QuestionList getQuestions() {
     questionList.questions.add(q1);
     questionList.questions.add(q2);
     questionList.questions.add(q3);
@@ -43,11 +43,12 @@ public class MainRestController {
     questionList.questions.add(q7);
     questionList.questions.add(q8);
     questionListRepo.save(questionList);
-    ArrayList random = new ArrayList();
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
       int id = (int) (Math.random() * 7) + 1;
-      random.add(questionListRepo.findOne(1L).getQuestions().get(id));
+      questionList.questions.remove(questionList.questions.get(id));
     }
-    return random;
+    return questionList;
   }
+
+
 }
